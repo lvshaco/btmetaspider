@@ -30,7 +30,9 @@ func (p *Nspider) Run() {
             addr := &net.UDPAddr{IP: node.ip, Port: node.port}
             go p.krpc.QFindNode(addr, node.id)
         case <-time.After(time.Second*3):
-            p.bootstrap()
+            if len(p.nodeChan) == 0 {
+                p.bootstrap()
+            }
         }
     }
 }
