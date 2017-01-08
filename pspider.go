@@ -59,7 +59,7 @@ func (p *Pspider) handle(addr *net.UDPAddr, pkg []byte) {
     defer func() {
         if e := recover(); e != nil {
             log.Println("Error Pspider handle:", e)
-            log.Println(debug.Stack())
+            log.Println(string(debug.Stack()))
         }
     }()
     p.krpc.Handle(addr, pkg)
