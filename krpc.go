@@ -3,7 +3,7 @@ package btmetaspider
 import (
     "log"
     "net"
-    "encoding/json"
+    //"encoding/json"
 )
 
 type Krpc struct {
@@ -25,13 +25,13 @@ func NewKrpc(conn *net.UDPConn,
 
 func (p *Krpc) Handle(addr *net.UDPAddr, pkg []byte) {
     vs := assertbdecode(pkg)
-    o, err := json.MarshalIndent(vs, "", " ")
-    log.Println("pkg: ", len(pkg))
-    if err == nil {
-        log.Println("json v: ", string(o))
-    } else {
-        log.Println("json error: ", err)
-    }
+//    o, err := json.MarshalIndent(vs, "", " ")
+//    log.Println("pkg: ", len(pkg))
+//    if err == nil {
+//        log.Println("json v: ", string(o))
+//    } else {
+//        log.Println("json error: ", err)
+//    }
     v := vs.(map[string]interface{})
     t := v["t"].(string)
     y := v["y"].(string)
@@ -41,7 +41,9 @@ func (p *Krpc) Handle(addr *net.UDPAddr, pkg []byte) {
         id := r["id"].(string)
         nodes := r["nodes"].(string)
         p.HFindNode(addr, id, nodes)
+        log.Println("HFindNode")
     case "q":
+        log.Println("q")
         q := v["q"].(string)
         a := v["a"].(map[string]interface{})
         switch q {
