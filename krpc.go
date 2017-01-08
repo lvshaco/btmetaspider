@@ -28,7 +28,7 @@ func (p *Krpc) Handle(addr *net.UDPAddr, pkg []byte) {
     o, err := json.MarshalIndent(vs, "", " ")
     log.Println("pkg: ", len(pkg))
     if err == nil {
-        log.Println("json v: ", o)
+        log.Println("json v: ", string(o))
     } else {
         log.Println("json error: ", err)
     }
