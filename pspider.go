@@ -13,6 +13,7 @@ type Pspider struct {
 }
 
 func NewPspider(cfg *Config) *Pspider {
+    log.Println("Listen on udp: "+cfg.Addr)
     addr, err := net.ResolveUDPAddr("udp", cfg.Addr)
     if err != nil {
         log.Println(err)

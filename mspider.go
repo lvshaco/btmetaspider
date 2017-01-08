@@ -2,6 +2,7 @@ package btmetaspider
 
 import (
     "log"
+    "fmt"
 )
 
 type Mspider struct {
@@ -15,7 +16,8 @@ func NewMspider(pc chan *PeerInfo) *Mspider {
 func (p *Mspider) Run() {
     for {
         for peer := range p.peerChan {
-            log.Println("peer:", peer)
+            log.Println(fmt.Sprintf("peer %02x on %s:%d",
+                peer.infohash, peer.ip.String(), peer.port))
         }
     }
 }

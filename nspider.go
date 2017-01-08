@@ -1,7 +1,8 @@
 package btmetaspider
 
 import (
-    "log"
+//    "log"
+//    "fmt"
     "net"
     "time"
 )
@@ -24,7 +25,8 @@ func (p *Nspider) Run() {
     for {
         select {
         case node := <-p.nodeChan:
-            log.Println("node:", node)
+            //log.Println(fmt.Sprintf("node %02x on %s:%d",
+            //    node.id, node.ip.String(), node.port))
             addr := &net.UDPAddr{IP: node.ip, Port: node.port}
             go p.krpc.QFindNode(addr, node.id)
         case <-time.After(time.Second*3):
