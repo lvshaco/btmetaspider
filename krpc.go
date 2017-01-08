@@ -26,7 +26,8 @@ func NewKrpc(conn *net.UDPConn,
 func (p *Krpc) Handle(addr *net.UDPAddr, pkg []byte) {
     vs := assertbdecode(pkg)
     o, err := json.MarshalIndent(vs, "", " ")
-    if err != nil {
+    log.Println("pkg: ", len(pkg))
+    if err == nil {
         log.Println("json v: ", o)
     } else {
         log.Println("json error: ", err)
