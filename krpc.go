@@ -1,7 +1,9 @@
 package btmetaspider
 
 import (
+    "log"
     "net"
+    "encoding/json"
 )
 
 type Krpc struct {
@@ -23,6 +25,12 @@ func NewKrpc(conn *net.UDPConn,
 
 func (p *Krpc) Handle(addr *net.UDPAddr, pkg []byte) {
     vs := assertbdecode(pkg)
+    o, err := json.MarshalIndent(vs, "", " ")
+    if err != nil {
+        log.Println("json v: ", o)
+    } else {
+        log.Println("json error: ", err)
+    }
     v := vs.(map[string]interface{})
     t := v["t"].(string)
     y := v["y"].(string)
