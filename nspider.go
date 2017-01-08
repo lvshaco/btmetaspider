@@ -14,7 +14,7 @@ type Nspider struct {
 }
 
 func NewNspider(bootstrapAddr []string, nc chan *NodeInfo, krpc *Krpc) *Nspider {
-    return &Nspider{
+    return &Nspider {
         bootstrapAddr: bootstrapAddr,
         nodeChan: nc,
         krpc: krpc,
