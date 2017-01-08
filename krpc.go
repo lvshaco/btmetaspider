@@ -41,15 +41,16 @@ func (p *Krpc) Handle(addr *net.UDPAddr, pkg []byte) {
         id := r["id"].(string)
         nodes := r["nodes"].(string)
         p.HFindNode(addr, id, nodes)
-        log.Println("HFindNode")
+        //log.Println("HFindNode")
     case "q":
-        log.Println("q")
         q := v["q"].(string)
         a := v["a"].(map[string]interface{})
         switch q {
         case "get_peers":
+            log.Println("get_peers")
             p.HGetPeers(addr, t, a)
         case "announce_peer":
+            log.Println("announce_peer")
             p.HAnnouncePeer(addr, t, a)
         }
     }

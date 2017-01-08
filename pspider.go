@@ -3,7 +3,7 @@ package btmetaspider
 import (
     "net"
     "log"
-    "runtime/debug"
+//    "runtime/debug"
 )
 
 type Pspider struct {
@@ -59,7 +59,7 @@ func (p *Pspider) handle(addr *net.UDPAddr, pkg []byte) {
     defer func() {
         if e := recover(); e != nil {
             log.Println("Error Pspider handle:", e)
-            log.Println(string(debug.Stack()))
+//            log.Println(string(debug.Stack()))
         }
     }()
     p.krpc.Handle(addr, pkg)
